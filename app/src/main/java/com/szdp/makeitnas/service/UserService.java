@@ -31,7 +31,7 @@ public class UserService {
 
     public UserRead saveUser(final UserSave save) {
         if (save.username().isBlank() || save.password().isBlank())
-            throw new InvalidUserDataException("Username and password can not be empty");
+            throw new InvalidUserDataException(String.format("%s can not be empty", save.username().isBlank() ? "Username" : "Password"));
 
         return UserConverter.convertModelToRead(this.repository.save(UserConverter.convertSaveToModel(save)));
     }
@@ -39,6 +39,9 @@ public class UserService {
     public UserRead updateUser(final long id, final UserSave save) {
         User user = this.repository.findById(id)
             .orElseThrow(() -> new UserNotFoundException(String.format("Can't update user: No user found with id={%d}", id)));
+
+        if (save.username().isBlank() || save.password().isBlank())
+            throw new InvalidUserDataException(String.format("%s can not be empty", save.username().isBlank() ? "Username" : "Password"));
 
         user.setUsername(save.username());
         user.setPassword(save.password());
