@@ -1,6 +1,11 @@
 package com.szdp.makeitnas.dto;
 
-public record UserSave(String username, String password) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record UserSave(
+    @Schema(name = "Username", example = "John Doe") String username,
+    @Schema(name = "Password", example = "Password123") String password
+) {
     
     public UserSave() {
         this("", "");

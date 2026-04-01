@@ -18,10 +18,11 @@ import lombok.Setter;
 @Table(name = "Users")
 public class User {
     
-    @Setter(AccessLevel.NONE)
     @Id
+    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String username;
     private String password;
 
