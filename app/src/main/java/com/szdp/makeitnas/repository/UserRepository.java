@@ -8,6 +8,6 @@ import com.szdp.makeitnas.model.User;
 
 public interface UserRepository extends JpaRepository <User, Long> {
     
-    Optional<User> findById(final long id);
+    Optional <User> findById(final long id);
 
 }
